@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>custom-tictactoe</title>
+  <link rel="stylesheet" href="style.css">
+<body>
+
+ <div class="game-container">
+
+    <div class="header">
+      <h1>Tic Tac Toe Dynamique</h1>
+    </div>
+    <div class="game-info">
+      <div class="current-player" id="currentPlayer">
+         Joueur 1 (X)
+      </div>
+      <div class="score-board">
+        <div  class="score" id="player1Score">
+          <div>Joueur 1</div>
+          <div>0</div>
+        </div>
+         <div class="score" id="drawScore">
+                    <div>Égalités</div>
+                    <div>0</div>
+                </div>
+                <div class="score" id="player2Score">
+                    <div>Joueur 2</div>
+                    <div>0</div>
+                </div>
+
+      </div>
+
+    </div>
+    <div class="controls">
+      <button class="btn"  id=" btn btn-primary">Parametre </button>
+      <button class="btn" id=" btn btn-secondary">Nouvelle Partie</button>
+      <button class="btn" id=" btn btn-secondary">Reset Scores</button>
+    </div>
+    <div class="settings" id="settings">
+      <div class="settings-row">
+        <div class="settings-group">
+          <label class="gridSize">Taille de la grille: </label>
+          <select id="gridSize" >
+             <option value="3">3x3</option>
+              <option value="4">4x4</option>
+              <option value="5">5x5</option>
+              <option value="6">6x6</option>
+              <option value="7">7x7</option>
+              <option value="8">8x8</option>
+              <option value="9">9x9</option>
+              <option value="10">10x10</option>
+          </select>
+        </div>
+        <div class="settings-group">
+          <label for="WinCondition"> Alignements pour gagner:</label>
+          <select id="WinCondition">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+          </select>
+
+        </div>
+      </div>
+      <div class="settings-row">
+        <div class="settings-group">
+          <label for="player2Symbol"> Symbole Joueur 1:</label>
+          <input type="text" id="player1Symbol" value="X" maxlength="1" onchange="updateGameSettings()"> 
+        </div>
+        <div class="settings-group">
+          <label for="player2Symbol"> Symbole Joueur 2:</label>
+          <input type="text" id="player2Symbol" value="O" maxlength="1" onchange="updateGameSettings()">
+      </div>
+  </div>
+  </div>
+  <div class="game-status" id="gameStatus"></div>
+  <div class="game-board" id="gameBoard"></div>
+  
+  <div class="history" id="history">
+     <h3>Historique des parties</h3>
+      <div id="historyList"></div>
+
+ </div>
+
+</body>
+</html>
