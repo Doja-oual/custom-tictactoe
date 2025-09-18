@@ -1,89 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>custom-tictactoe</title>
-  <link rel="stylesheet" href="style.css">
-<body>
-
- <div class="game-container">
-
-    <div class="header">
-      <h1>Tic Tac Toe Dynamique</h1>
-    </div>
-    <div class="game-info">
-      <div class="current-player" id="currentPlayer">
-         Joueur 1 (X)
-      </div>
-      <div class="score-board">
-        <div  class="score" id="player1Score">
-          <div>Joueur 1</div>
-          <div>0</div>
-        </div>
-         <div class="score" id="drawScore">
-                    <div>Égalités</div>
-                    <div>0</div>
-                </div>
-                <div class="score" id="player2Score">
-                    <div>Joueur 2</div>
-                    <div>0</div>
-                </div>
-
-      </div>
-
-    </div>
-    <div class="controls">
-      <button class="btn"  id=" btn btn-primary">Parametre </button>
-      <button class="btn" id=" btn btn-secondary">Nouvelle Partie</button>
-      <button class="btn" id=" btn btn-secondary">Reset Scores</button>
-    </div>
-    <div class="settings" id="settings">
-      <div class="settings-row">
-        <div class="settings-group">
-          <label class="gridSize">Taille de la grille: </label>
-          <select id="gridSize" >
-             <option value="3">3x3</option>
-              <option value="4">4x4</option>
-              <option value="5">5x5</option>
-              <option value="6">6x6</option>
-              <option value="7">7x7</option>
-              <option value="8">8x8</option>
-              <option value="9">9x9</option>
-              <option value="10">10x10</option>
-          </select>
-        </div>
-        <div class="settings-group">
-          <label for="WinCondition"> Alignements pour gagner:</label>
-          <select id="WinCondition">
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-          </select>
-
-        </div>
-      </div>
-      <div class="settings-row">
-        <div class="settings-group">
-          <label for="player2Symbol"> Symbole Joueur 1:</label>
-          <input type="text" id="player1Symbol" value="X" maxlength="1" onchange="updateGameSettings()"> 
-        </div>
-        <div class="settings-group">
-          <label for="player2Symbol"> Symbole Joueur 2:</label>
-          <input type="text" id="player2Symbol" value="O" maxlength="1" onchange="updateGameSettings()">
-      </div>
-  </div>
-  </div>
-  <div class="game-status" id="gameStatus"></div>
-  <div class="game-board" id="gameBoard"></div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Dynamique - PlayInnovate</title>
+    <link rel="stylesheet" href="style.css">
   
-  <div class="history" id="history">
-     <h3>Historique des parties</h3>
-      <div id="historyList"></div>
+</head>
+<body>
+    <div class="container">
+        
+        <header class="header">
+            <h1>Tic Tac Toe Dynamique</h1>
+            <p class="subtitle">Powered by PlayInnovate Gaming Solutions</p>
+        </header>
+        
+        
+        <div class="config-panel">
+            <h3> Configuration de la partie</h3>
+            <div class="config-inputs">
+                <div class="input-group">
+                    <label for="live-grid-input"> Taille grille (n×n):</label>
+                    <input type="number" id="live-grid-input" min="3" max="10" value="3">
+                </div>
+                <div class="input-group">
+                    <label for="live-win-input"> Alignements requis (k):</label>
+                    <input type="number" id="live-win-input" min="3" max="10" value="3">
+                </div>
+                <div class="input-group">
+                    <label for="live-symbol1-input"> Joueur 1:</label>
+                    <input type="text" id="live-symbol1-input" maxlength="2" value="X" placeholder="X, ★, 🔥">
+                </div>
+                <div class="input-group">
+                    <label for="live-symbol2-input"> Joueur 2:</label>
+                    <input type="text" id="live-symbol2-input" maxlength="2" value="O" placeholder="O, ♦, ⚡">
+                </div>
+                <button id="apply-config" class="btn btn-primary"> Appliquer Configuration</button>
+            </div>
+        </div>
 
- </div>
+        <!-- Game Information Panel -->
+        <div class="game-info">
+            <div class="player-section">
+                <div class="current-player">
+                    Joueur actuel: <span id="current-player" class="player-symbol">X</span>
+                </div>
+                <div class="game-status">
+                    <strong> Partie actuelle:</strong> Grille <span id="grid-size">3×3</span> | 
+                    Alignements <span id="win-condition">3</span>
+                </div>
+            </div>
+            
+            <div class="score-section">
+                <div class="score-title"> Scores de la session</div>
+                <div class="score-item player-x">
+                    <span id="symbol-x">X</span>: <span id="score-x">0</span> victoires
+                </div>
+                <div class="score-item player-o">
+                    <span id="symbol-o">O</span>: <span id="score-o">0</span> victoires
+                </div>
+            </div>
+        </div>
+        
+        <!-- Game Board Container -->
+        <div class="game-container">
+            <div id="game-board" class="game-board"></div>
+        </div>
+        
+        <!-- Game Controls -->
+        <div class="game-controls">
+            <button id="new-game" class="btn btn-primary"> Nouvelle Partie</button>
+            <button id="reset-scores" class="btn btn-secondary"> Reset Scores</button>
+            <button id="settings" class="btn btn-settings"> Paramètres</button>
+        </div>
+        
+        <!-- Game Messages -->
+        <div id="message" class="message"></div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2> Configuration du Jeu</h2>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <label for="grid-input"> Taille de la grille (n × n):</label>
+                    <input type="number" id="grid-input" min="3" max="10" value="3">
+                    <small>Choisissez une taille entre 3 et 10 pour personnaliser votre expérience</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="win-input"> Alignements requis pour gagner (k):</label>
+                    <input type="number" id="win-input" min="3" max="10" value="3">
+                    <small>Nombre de symboles consécutifs nécessaires pour remporter la partie</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="symbol1-input"> Symbole du Joueur 1:</label>
+                    <input type="text" id="symbol1-input" maxlength="2" value="X" placeholder="Ex: X, ★">
+                    <small>Personnalisez votre symbole (1-2 caractères maximum)</small>
+                </div>
+                
+                <div class="setting-group">
+                    <label for="symbol2-input"> Symbole du Joueur 2:</label>
+                    <input type="text" id="symbol2-input" maxlength="2" value="O" placeholder="Ex: O, ♦">
+                    <small>Choisissez un symbole différent du Joueur 1</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="apply" class="btn btn-primary"> Appliquer</button>
+                <button id="cancel" class="btn btn-secondary"> Annuler</button>
+            </div>
+        </div>
+    </div>
 
+    <script src="app.js"></script>
 </body>
 </html>
