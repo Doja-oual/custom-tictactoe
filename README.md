@@ -32,7 +32,7 @@
 tic-tac-toe-dynamique
  index.html → Page principale
  style.css → Styles et responsive
- script.js → Logique du jeu (DOM + localStorage)
+ app.js → Logique du jeu (DOM + localStorage)
  README.md → Documentation et instructions
 
  
